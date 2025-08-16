@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-                @vite(['resources/css/app.css', 'resources/js/app.js'])
+            @php
+        $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+    @endphp
+
+    <link rel="stylesheet" href="{{ secure_asset('build/' . $manifest['resources/css/app.css']['file']) }}">
+    <script type="module" src="{{ secure_asset('build/' . $manifest['resources/js/app.js']['file']) }}"></script>
+
 
 </head>
 <body class=" bg-gray-100">
